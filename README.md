@@ -50,5 +50,6 @@ You can add quickly many kind of THREE.js objects.
 
 - Add helpers on `THREE.Object3D`
 - Add wireframe options on `THREE.Material`
+- Add `THREE.Fog` & `THREE.FogExp2`
 - Refactoring 
 - Climate

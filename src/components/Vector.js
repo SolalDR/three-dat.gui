@@ -5,7 +5,9 @@
 * @param {integer} step 
 * @returns {GUI} Returns the folder created for the vector.
 */
-export const addVector = function( name, vector, step = 1 ) {
+export const addVector = function( name, vector, {
+  step = 1
+} = {}) {
   var folder = this.addFolder( name );
   
   if( Math.abs(vector.x) >= 0 ) folder.add( vector, "x" ).step( step );

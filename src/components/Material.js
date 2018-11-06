@@ -1,3 +1,5 @@
+import { manageColor } from "../helpers/manageDefines";
+
 const materialDefine = [
   ["clearCoat", 0, 1],
   ["clearCoatRoughness", 0, 1],
@@ -27,30 +29,12 @@ export const addMaterial = function( name, material ) {
   var folder = this.addFolder( name );
   var config = {};
   materialDefine.forEach( parameter => {
-    if( !material[parameter[0]] ) return;
     
-    if( parameter[1] == "color" ) {
-      
-      config[parameter[0]] = { 
-        r: material[parameter[0]].r*255,
-        g: material[parameter[0]].g*255,
-        b: material[parameter[0]].b*255 
-      }
-      
-      folder.addColor( config, parameter[0], parameter[1]).onChange( (e) => {
-        material[parameter[0]].r = e.r/255;
-        material[parameter[0]].g = e.g/255;
-        material[parameter[0]].b = e.b/255;
-        material.needsUpdate = true;
-      }) 
-      
-    } else {
-      
-      folder.add( material, parameter[0], parameter[1], parameter[2]).onChange( () => {
-        material.needsUpdate = true;
-      })
-      
-    }
+    if( !material[parameter[0]] ) return
+    if( parameter[1] == "color" )
+      manageColor(material, folder, parameter, () => material.needsUpdate = true)
+    else  
+      folder.add( material, parameter[0], parameter[1], parameter[2]).onChange( () => material.needsUpdate = true )
     
   })
   

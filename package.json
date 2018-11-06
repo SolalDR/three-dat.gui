@@ -1,7 +1,7 @@
 {
   "name": "three-dat.gui",
-  "version": "1.0.1",
-  "description": "A package which create THREE.js control on Dat.GUI",
+  "version": "1.0.2",
+  "description": "A package which create THREE.js controls on Dat.GUI",
   "main": "src/index.js",
   "scripts": {
     "dev": "budo dev/index.js:dev/bundle.js --live -t glslify -- -t [ babelify --presets [ es2015 ] ]  ",

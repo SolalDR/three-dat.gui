@@ -1,3 +1,5 @@
+import { manageColor } from "../helpers/manageDefines";
+
 const defines = [
   ["bottom", 0],
   ["top", 0],
@@ -21,37 +23,18 @@ const defines = [
 */
 export const addCamera = function( name, camera ) {
   var folder = this.addFolder( name );
-  var config = {};
-  
   folder.addObject3D("object", camera, { inner: true });
   
-  
   defines.forEach( parameter => {
-    if( !camera[parameter[0]] ) return;
     
-    if( parameter[1] == "color" ) {
-      
-      config[parameter[0]] = { 
-        r: camera[parameter[0]].r*255,
-        g: camera[parameter[0]].g*255,
-        b: camera[parameter[0]].b*255 
-      }
-      
-      folder.addColor( config, parameter[0], parameter[1]).onChange( (e) => {
-        camera[parameter[0]].r = e.r/255;
-        camera[parameter[0]].g = e.g/255;
-        camera[parameter[0]].b = e.b/255;
-      }) 
-      
-    } else {
-      
+    if( !camera[parameter[0]] ) return;
+    if( parameter[1] == "color" )
+      manageColor(camera, folder, parameter);
+    else
       folder.add( camera, parameter[0], parameter[1], parameter[2]).onChange(()=>{
-        if( camera.updateProjectionMatrix ) {
-          camera.updateProjectionMatrix();
-        } 
+        if( camera.updateProjectionMatrix ) camera.updateProjectionMatrix()
       })
       
-    }
   })
   
   return folder;
