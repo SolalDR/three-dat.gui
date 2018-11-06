@@ -1,6 +1,6 @@
 # three-dat.gui
 
-A usefull extension for THREE.js, using Dat.GUI 
+A package which create THREE.js controls on Dat.GUI
 
 ## Install 
 
