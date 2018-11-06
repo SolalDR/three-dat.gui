@@ -1,5 +1,7 @@
 # three-dat.gui
 
+<a href="https://codeclimate.com/github/SolalDR/three-dat.gui/maintainability"><img src="https://api.codeclimate.com/v1/badges/db5b4da3972fef7fbad4/maintainability" /></a>
+
 A package which create THREE.js controls on Dat.GUI
 
 ## Install 
