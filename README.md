@@ -20,6 +20,9 @@ yarn add three-dat.gui
 Let's create a simple THREE.js example which display a gui controller for our `THREE.MeshStandardMaterial`
 
 ``` javascript
+import Dat from "dat.gui";
+import "three-dat.gui";
+
 /* 
 ... init scene, renderer & camera
 */
@@ -43,3 +46,9 @@ You can add quickly many kind of THREE.js objects.
 - `THREE.Object3D` with `gui.addObject3D("name", object)`
 - `THREE.Mesh` with `gui.addMesh("name", mesh)`
 
+## Todo
+
+- Add helpers on `THREE.Object3D`
+- Add wireframe options on `THREE.Material`
+- Refactoring 
+- Climate

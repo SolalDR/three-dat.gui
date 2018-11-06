@@ -1,7 +1,7 @@
 {
-  "name": "dat.gui-three",
-  "version": "1.0.0",
-  "description": "",
+  "name": "three-dat.gui",
+  "version": "1.0.1",
+  "description": "A package which create THREE.js control on Dat.GUI",
   "main": "src/index.js",
   "scripts": {
     "dev": "budo dev/index.js:dev/bundle.js --live -t glslify -- -t [ babelify --presets [ es2015 ] ]  ",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SolalDR/dat.gui-three.git"
+    "url": "git+https://github.com/SolalDR/three-dat.gui.git"
   },
   "keywords": [
     "three",
@@ -18,9 +18,9 @@
   "author": "SolalDR",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SolalDR/dat.gui-three/issues"
+    "url": "https://github.com/SolalDR/three-dat.gui/issues"
   },
-  "homepage": "https://github.com/SolalDR/dat.gui-three#readme",
+  "homepage": "https://github.com/SolalDR/three-dat.gui#readme",
   "dependencies": {
     "dat.gui": "^0.7.3",
     "three": "^0.98.0"
