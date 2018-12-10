@@ -1,6 +1,9 @@
 import * as THREE from "three";
 import Dat from "dat.gui";
-import "./../src/index.js"; // three-dat.gui
+import initThreeDatGui from "./../src/index.js"; // three-dat.gui
+import TranslationController from "./src/TranslationController";
+
+initThreeDatGui(Dat, THREE);
 
 
 class App {
@@ -23,9 +26,13 @@ class App {
     this.camera.lookAt(new THREE.Vector3());
     this.scene = new THREE.Scene();
 
+
     let geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    let material = new THREE.MeshPhongMaterial();
+    let material = new THREE.MeshPhongMaterial({
+      transparent: true
+    });
     this.mesh = new THREE.Mesh( geometry, material );
+
     this.scene.add( this.mesh );
 
     this.light = new THREE.PointLight();
@@ -41,13 +48,13 @@ class App {
   initGui(){
     var self = this;
     var gui = new Dat.GUI();
-    gui.addScene("Scene", this.scene, {
-      recursive: true
-    });
+    gui.addScene("Scene", this.scene, { recursive: true });
     gui.addMaterial("Box Material", this.mesh.material);
     gui.addLight("Light 1", this.light);
     gui.addCamera("Camera", this.camera);
     gui.addMesh("Mesh", this.mesh);
+
+    var meshController = new TranslationController(this.mesh, this.camera);
   }
 
 

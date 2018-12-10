@@ -25,11 +25,12 @@ export const addLight = function( name, light ) {
   defines.forEach( parameter => {
     
     if( !light[parameter[0]] ) return
-    if( parameter[1] == "color" )
+    if( parameter[1] == "color" ) {
       manageColor(light, folder, parameter);
-    else  
+    } else {
       folder.add( light, parameter[0], parameter[1], parameter[2])
-
+    }
+    
   })
   
   return folder;

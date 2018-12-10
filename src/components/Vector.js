@@ -6,7 +6,7 @@
 * @returns {GUI} Returns the folder created for the vector.
 */
 export const addVector = function( name, vector, {
-  step = 1
+  step = 0.1
 } = {}) {
   var folder = this.addFolder( name );
   

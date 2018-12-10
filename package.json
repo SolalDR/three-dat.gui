@@ -1,6 +1,6 @@
 {
   "name": "three-dat.gui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A package which create THREE.js controls on Dat.GUI",
   "main": "src/index.js",
   "scripts": {
