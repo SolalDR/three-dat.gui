@@ -1,11 +1,13 @@
 {
   "name": "three-dat.gui",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "A package which create THREE.js controls on Dat.GUI",
   "main": "dist/index.js",
   "browser": "dist/browser.js",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c",
     "dev": "run-p dev:**",
