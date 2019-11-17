@@ -48,6 +48,8 @@ You can add quickly many kind of THREE.js objects.
 - `THREE.Scene` with `gui.addScene("name", scene)`
 - `THREE.Object3D` with `gui.addObject3D("name", object)`
 - `THREE.Mesh` with `gui.addMesh("name", mesh)`
+- `THREE.Fog` with `gui.addFog("name", fog)`
+- `THREE.FogExp2` with `gui.addFogExp2("name", fog)`
 
 ## Todo
 

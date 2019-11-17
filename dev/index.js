@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import Dat from 'dat.gui';
-import initThreeDatGui from '../src/index.js'; // three-dat.gui
-import TranslationController from './src/TranslationController';
+import initThreeDatGui from '../dist'; // three-dat.gui
 
 initThreeDatGui(Dat);
 
@@ -12,7 +11,8 @@ class App {
 
     // Init
     this.renderer = new THREE.WebGLRenderer({
-      antialias: true
+      antialias: true,
+      canvas: document.querySelector('canvas')
     });
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -28,6 +28,8 @@ class App {
     this.camera.position.set(5, 1, 5);
     this.camera.lookAt(new THREE.Vector3());
     this.scene = new THREE.Scene();
+    this.fog = new THREE.Fog();
+    this.scene.fog = this.fog;
 
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshPhongMaterial({
@@ -54,8 +56,6 @@ class App {
     gui.addLight('Light 1', this.light);
     gui.addCamera('Camera', this.camera);
     gui.addMesh('Mesh', this.mesh);
-
-    // new TranslationController(this.mesh, this.camera);
   }
 
   onWindowResize() {

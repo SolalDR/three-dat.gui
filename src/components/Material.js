@@ -12,7 +12,8 @@ const materialDefine = [
   ['envMapIntensity', 0, 1],
   ['lightMapIntensity', 0, 1],
   ['metalness', 0, 1],
-  ['opacity', 0, 1][('reflectivity', 0, 1)],
+  ['opacity', 0, 1],
+  ['reflectivity', 0, 1],
   ['refractionRatio', 0, 1],
   ['roughness', 0, 1],
   ['shininess', 0, 1],
@@ -30,7 +31,7 @@ export const addMaterial = function(name, material) {
   const folder = this.addFolder(name);
 
   materialDefine.forEach(parameter => {
-    if (typeof material[parameter[0]] === 'undefined') return;
+    if (!material.hasOwnProperty(parameter[0])) return;
     if (parameter[1] === 'color') {
       manageColor(
         material,

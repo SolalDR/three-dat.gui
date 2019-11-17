@@ -23,7 +23,7 @@ export const addLight = function(name, light) {
   folder.addObject3D(null, light, { inner: true });
 
   defines.forEach(parameter => {
-    if (!light[parameter[0]]) return;
+    if (!light.hasOwnProperty(parameter[0])) return;
     if (parameter[1] === 'color') {
       manageColor(light, folder, parameter);
     } else {

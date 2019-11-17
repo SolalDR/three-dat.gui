@@ -12,11 +12,16 @@ export const manageColor = (object, folder, parameter, onChange) => {
     object[parameter[0]].g = e.g / 255;
     object[parameter[0]].b = e.b / 255;
 
-    if (onChange) onChange();
+    if (onChange) onChange(e);
   });
 };
 
-export const manageRecursive = (isRecursive, object, folder, firstLevel) => {
+export const manageRecursive = (
+  isRecursive,
+  object,
+  folder,
+  firstLevel = false
+) => {
   if (isRecursive && object.children.length > 0) {
     const childrenFolder = firstLevel ? folder : folder.addFolder('children');
 

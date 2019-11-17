@@ -6,7 +6,6 @@ import { addCamera } from './components/Camera.js';
 import { addScene } from './components/Scene.js';
 import { addMesh } from './components/Mesh.js';
 import { addFog } from './components/Fog.js';
-import { addFogExp2 } from './components/FogExp2.js';
 
 const extended = [
   addVector,
@@ -16,8 +15,7 @@ const extended = [
   addCamera,
   addScene,
   addMesh,
-  addFog,
-  addFogExp2
+  addFog
 ];
 
 export default function(dat) {

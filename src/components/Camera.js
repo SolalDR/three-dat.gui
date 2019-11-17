@@ -25,7 +25,7 @@ export const addCamera = function(name, camera) {
   folder.addObject3D('object', camera, { inner: true });
 
   defines.forEach(parameter => {
-    if (!camera[parameter[0]]) return;
+    if (!camera.hasOwnProperty(parameter[0])) return;
     if (parameter[1] === 'color') manageColor(camera, folder, parameter);
     else
       folder

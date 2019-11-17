@@ -15,16 +15,22 @@ const defines = [
 export const addScene = function(name, scene, { recursive = false } = {}) {
   const folder = this.addFolder(name);
   defines.forEach(parameter => {
-    if (!scene[parameter[0]]) return;
+    if (!scene.hasOwnProperty(parameter[0]) || scene[parameter[0]] === null)
+      return;
 
-    if (parameter[1] === 'color') {
-      manageColor(light, folder, parameter, () => (scene.needsUpdate = true));
-    } else if (parameter[1] === 'material' && scene[parameter[0]]) {
-      folder.addMaterial(parameter[0], scene[parameter[0]]);
-    } else if (parameter[1] === 'fog' && scene[parameter[0]]) {
-      folder.addFog(parameter[0], scene[parameter[0]]);
-    } else {
-      folder.add(material, parameter[0], parameter[1], parameter[2]);
+    switch (parameter[1]) {
+      case 'color':
+        manageColor(scene, folder, parameter, () => (scene.needsUpdate = true));
+        break;
+      case 'fog':
+        folder.addFog(parameter[0], scene[parameter[0]]);
+        break;
+      case 'material':
+        folder.addMaterial(parameter[0], scene[parameter[0]]);
+        break;
+      default:
+        folder.add(scene[parameter[0]], parameter[0], parameter[1], parameter[2]); // prettier-ignore
+        break;
     }
   });
 
