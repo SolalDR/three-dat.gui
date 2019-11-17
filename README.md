@@ -4,27 +4,28 @@
 
 A package which create THREE.js controls on Dat.GUI
 
-## Install 
+## Install
 
-First install the npm package 
+First install the npm package
+
 ```
 npm install three-dat.gui
 ```
 
 Or with yarn
+
 ```
 yarn add three-dat.gui
 ```
-
 
 ## How to use
 
 Let's create a simple THREE.js example which display a gui controller for our `THREE.MeshStandardMaterial`
 
-``` javascript
-import Dat from "dat.gui";
-import init from "three-dat.gui"; // Import initialization method
-init(Dat);  // Init three-dat.gui with Dat 
+```javascript
+import Dat from 'dat.gui';
+import init from 'three-dat.gui'; // Import initialization method
+init(Dat); // Init three-dat.gui with Dat
 
 /* 
 ... init scene, renderer & camera
@@ -36,11 +37,10 @@ var material = new MeshStandardMaterial();
 var mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
-gui.addMaterial("standard_material", material);
+gui.addMaterial('standard_material', material);
 ```
- 
 
-You can add quickly many kind of THREE.js objects. 
+You can add quickly many kind of THREE.js objects.
 
 - `THREE.Material` with `gui.addMaterial("name", material)`
 - `THREE.Light` with `gui.addLight("name", light)`
@@ -52,7 +52,5 @@ You can add quickly many kind of THREE.js objects.
 ## Todo
 
 - Add helpers on `THREE.Object3D`
-- Add wireframe options on `THREE.Material`
-- Add `THREE.Fog` & `THREE.FogExp2`
-- Refactoring 
+- Refactoring
 - Climate
