@@ -7,7 +7,7 @@ import { addScene } from './components/Scene.js';
 import { addMesh } from './components/Mesh.js';
 import { addFog } from './components/Fog.js';
 
-const extended = [
+const extended = {
   addVector,
   addObject3D,
   addMaterial,
@@ -16,18 +16,19 @@ const extended = [
   addScene,
   addMesh,
   addFog
-];
+};
 
 export default function(dat) {
   const p = dat.GUI.prototype;
 
-  extended.forEach(method => {
-    if (p[method.name]) {
+  Object.keys(extended).forEach(name => {
+    const method = extended[name];
+    if (p[name]) {
       console.warn(
         `three-dat.gui: The method "${method.name}" already exist. Check compatibility or check if three-dat.gui hasn't been imported twice.`
       );
       return;
     }
-    p[method.name] = method;
+    p[name] = method;
   });
 }
