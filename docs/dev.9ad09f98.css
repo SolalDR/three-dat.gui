@@ -49,16 +49,19 @@ table {
 
 body {
   overflow: hidden;
-  font-family: sans-serif;
 }
 
 a {
   position: absolute;
   z-index: 2;
-  bottom: 10px;
-  left: 10px;
-  color: white;
-  font-size: 1em;
-  text-decoration: none;
-  font-weight: 300;
+  bottom: 0;
+  left: 0;
 }
+
+img {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+
+/*# sourceMappingURL=/dev.9ad09f98.css.map */

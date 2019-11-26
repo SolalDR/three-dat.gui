@@ -25,37 +25,28 @@ class App {
       0.1,
       1000
     );
+
     this.camera.position.set(5, 1, 5);
     this.camera.lookAt(new THREE.Vector3());
     this.scene = new THREE.Scene();
-    this.fog = new THREE.Fog();
+    this.scene.background = new THREE.Color(0xeeeeee)
+    this.fog = new THREE.Fog(0xeeeeee, 1, 100);
     this.scene.fog = this.fog;
-
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({
-      transparent: true
-    });
-    this.mesh = new THREE.Mesh(geometry, material);
-
-    this.scene.add(this.mesh);
-
-    this.light = new THREE.PointLight();
-    this.light.position.set(5, 5, 5);
-    this.scene.add(this.light);
 
     this.onWindowResize();
     this.renderer.animate(this.render.bind(this));
 
     this.initGui();
+    this.initFloor();
+    this.initCube();
+    this.initLight();
   }
 
   initGui() {
-    const gui = new Dat.GUI();
-    gui.addScene('Scene', this.scene, { recursive: true });
-    gui.addMaterial('Box Material', this.mesh.material);
-    gui.addLight('Light 1', this.light);
-    gui.addCamera('Camera', this.camera);
-    gui.addMesh('Mesh', this.mesh);
+    this.gui = new Dat.GUI();
+    
+    this.gui.addScene('Scene', this.scene);
+    this.gui.addCamera('Camera', this.camera);
   }
 
   onWindowResize() {
@@ -65,8 +56,51 @@ class App {
   }
 
   render() {
-    this.mesh.rotation.y += 0.01;
+    this.cubeMesh.rotation.y += 0.01;
     this.renderer.render(this.scene, this.camera);
+  }
+
+  initLight() {
+    this.light = new THREE.PointLight(0x9ed7ff);
+    this.light.position.set(0, -2.5, 0);
+
+    this.scene.add(this.light);
+    this.gui.addLight('PointLight', this.light);
+
+    this.ambient = new THREE.AmbientLight(0xFFFFFF, 0.3);
+
+    this.scene.add(this.ambient);
+    this.gui.addLight('AmbientLight', this.ambient);
+  }
+
+  initCube() {
+    const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+    const cubeMaterial = new THREE.MeshStandardMaterial({
+      transparent: true,
+      metalness: 0.8,
+      roughness: 0.5
+    });
+    this.cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    this.cubeMesh.rotation.x = -1;
+    this.cubeMesh.rotation.z = 2;
+
+    this.scene.add(this.cubeMesh);
+    this.gui.addMesh('Cube', this.cubeMesh);
+  }
+
+  initFloor() {
+    const floorGeometry = new THREE.PlaneGeometry(500, 500);
+    const floorMaterial = new THREE.MeshPhongMaterial({
+      color: 0xFFFFFF,
+      metalness: 0,
+    });
+    const floorMesh = new THREE.Mesh(floorGeometry, floorMaterial);
+    floorMesh.position.y = -3;
+    floorMesh.rotation.x = - Math.PI / 2
+    floorMesh.name = "Name"
+
+    this.scene.add(floorMesh);
+    this.gui.addMesh('Floor', floorMesh)
   }
 }
 
