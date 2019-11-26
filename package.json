@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run docs && rollup -c",
     "dev": "run-p dev:**",
     "dev:compile": "rollup -cw",
     "dev:serve": "parcel dev/index.html -d .parcel",
