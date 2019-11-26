@@ -12,9 +12,8 @@
     "build": "rollup -c",
     "dev": "run-p dev:**",
     "dev:compile": "rollup -cw",
-    "dev:serve": "parcel dev/index.html -d .parcel",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "generate:docs": "rsync -r dev/ docs && rsync -r dist/ docs && rm ./docs/index.js && mv ./docs/browser.js ./docs/index.js"
+    "dev:serve": "parcel dev/index.html -d ./docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
