@@ -26,17 +26,25 @@ export const manageRecursive = (
     const childrenFolder = firstLevel ? folder : folder.addFolder('children');
 
     object.children.forEach((child, i) => {
-      child.isMesh
-        ? childrenFolder.addMesh(
-            child.name ? child.name : child.type + '-' + i,
-            child,
-            { recursive: true }
-          )
-        : childrenFolder.addObject3D(
-            child.name ? child.name : child.type + '-' + i,
-            child,
-            { recursive: true }
-          );
+      if (child.isLight) {
+        childrenFolder.addLight(
+          child.name ? child.name : child.type + '-' + i,
+          child,
+          { recursive: true }
+        );
+      } else if (child.isMesh) {
+        childrenFolder.addMesh(
+          child.name ? child.name : child.type + '-' + i,
+          child,
+          { recursive: true }
+        );
+      } else {
+        childrenFolder.addObject3D(
+          child.name ? child.name : child.type + '-' + i,
+          child,
+          { recursive: true }
+        );
+      }
     });
   }
 };
