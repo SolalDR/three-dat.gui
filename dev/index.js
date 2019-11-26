@@ -40,12 +40,17 @@ class App {
     this.initFloor();
     this.initCube();
     this.initLight();
+
+    this.gui.addScene('Scene', this.scene, {
+      recursive: true
+    });
+    
   }
 
   initGui() {
     this.gui = new Dat.GUI();
     
-    this.gui.addScene('Scene', this.scene);
+
     this.gui.addCamera('Camera', this.camera);
   }
 

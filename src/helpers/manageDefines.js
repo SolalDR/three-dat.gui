@@ -1,3 +1,5 @@
+const TYPES = ["Light", "Mesh", "Object3D"]
+
 export const manageColor = (object, folder, parameter, onChange) => {
   const config = {};
 
@@ -25,25 +27,15 @@ export const manageRecursive = (
   if (isRecursive && object.children.length > 0) {
     const childrenFolder = firstLevel ? folder : folder.addFolder('children');
 
-    object.children.forEach((child, i) => {
-      if (child.isLight) {
-        childrenFolder.addLight(
-          child.name ? child.name : child.type + '-' + i,
-          child,
-          { recursive: true }
-        );
-      } else if (child.isMesh) {
-        childrenFolder.addMesh(
-          child.name ? child.name : child.type + '-' + i,
-          child,
-          { recursive: true }
-        );
-      } else {
-        childrenFolder.addObject3D(
-          child.name ? child.name : child.type + '-' + i,
-          child,
-          { recursive: true }
-        );
+    object.children.forEach((child, index) => {
+      for (var i = 0; i < types.length; i++) {
+        const type = TYPES[i];
+        if (child[`is${type}`]) {
+          const name = child.name ? child.name + '-' + index : child.type + '-' + index;
+          const options = { recursive: true };
+          childrenFolder[`add${type}`](name, child, options);
+          break;
+        } 
       }
     });
   }
