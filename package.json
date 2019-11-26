@@ -14,7 +14,7 @@
     "dev:compile": "rollup -cw",
     "dev:serve": "parcel dev/index.html -d .parcel",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "parcel build dev/index.html -d ./docs --public-url http://solaldr.github.io/three-dat.gui/"
+    "docs": "parcel build dev/index.html -d ./docs --public-url https://solaldr.github.io/three-dat.gui/"
   },
   "repository": {
     "type": "git",
