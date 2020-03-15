@@ -4,6 +4,8 @@
 
 A package which create THREE.js controls on Dat.GUI
 
+[live example](https://solaldr.github.io/three-dat.gui/)
+
 ## Install
 
 First install the npm package
