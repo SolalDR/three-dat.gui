@@ -1,0 +1,3 @@
+interface RecursiveOptions {
+  recursive?: boolean;
+}

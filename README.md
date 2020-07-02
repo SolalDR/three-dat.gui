@@ -26,8 +26,8 @@ Let's create a simple THREE.js example which display a gui controller for our `T
 
 ```javascript
 import Dat from 'dat.gui';
-import init from 'three-dat.gui'; // Import initialization method
-init(Dat); // Init three-dat.gui with Dat
+import threeDatGUI from 'three-dat.gui'; // Import initialization method
+threeDatGUI(Dat); // Init three-dat.gui with Dat
 
 /* 
 ... init scene, renderer & camera

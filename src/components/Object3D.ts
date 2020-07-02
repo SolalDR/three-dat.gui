@@ -1,23 +1,29 @@
-import { manageRecursive } from '../helpers/manageDefines';
+import { Object3D } from 'three';
+import dat from 'dat.gui';
+
+import { manageRecursive } from '@/helpers/manageDefines';
+
+export interface AddObject3DOptions extends RecursiveOptions {
+  inner: boolean;
+  stepPosition: number;
+  stepRotation: number;
+  stepScale: number;
+}
 
 /**
  * Add a gui controller on any Object3D to manipulate matrix world
- * @param {string} name
- * @param {THREE.Object3D} object
- * @param {Object} params
- * @returns {GUI} Returns the folder created for the Object3D
  */
-export const addObject3D = function(
-  name,
-  object,
+export const addObject3D = function (
+  name: string,
+  object: Object3D,
   {
     recursive = false,
     inner = false,
     stepPosition = 1,
     stepRotation = 0.02,
-    stepScale = 0.01
+    stepScale = 0.01,
   } = {}
-) {
+): dat.GUI {
   const folder = inner === false ? this.addFolder(name) : this;
   folder.addVector('position', object.position, stepPosition);
   folder.addVector('rotation', object.rotation, stepRotation);

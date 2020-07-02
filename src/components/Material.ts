@@ -1,4 +1,7 @@
-import { manageColor } from '../helpers/manageDefines';
+import { Material } from 'three';
+import dat from 'dat.gui';
+
+import { manageColor } from '@/helpers/manageDefines';
 
 const materialDefine = [
   ['aoMapIntensity', 0, 1],
@@ -18,20 +21,21 @@ const materialDefine = [
   ['roughness', 0, 1],
   ['shininess', 0, 1],
   ['specular', 'color'],
-  ['wireframe', true]
+  ['wireframe'],
 ];
 
 /**
  * Add a gui controller to a material.
- * @param {string} name
- * @param {THREE.Material} material
- * @returns {GUI} Returns the folder created for the material
  */
-export const addMaterial = function(name, material) {
+export const addMaterial = function (
+  name: string,
+  material: Material
+): dat.GUI {
   const folder = this.addFolder(name);
 
-  materialDefine.forEach(parameter => {
+  materialDefine.forEach((parameter) => {
     if (!material.hasOwnProperty(parameter[0])) return;
+
     if (parameter[1] === 'color') {
       manageColor(
         material,

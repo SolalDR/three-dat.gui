@@ -12,7 +12,7 @@ class App {
     // Init
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
-      canvas: document.querySelector('canvas')
+      canvas: document.querySelector('canvas'),
     });
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -29,7 +29,7 @@ class App {
     this.camera.position.set(5, 1, 5);
     this.camera.lookAt(new THREE.Vector3());
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xeeeeee)
+    this.scene.background = new THREE.Color(0xeeeeee);
     this.fog = new THREE.Fog(0xeeeeee, 1, 100);
     this.scene.fog = this.fog;
 
@@ -42,14 +42,12 @@ class App {
     this.initLight();
 
     this.gui.addScene('Scene', this.scene, {
-      recursive: true
+      recursive: true,
     });
-    
   }
 
   initGui() {
     this.gui = new Dat.GUI();
-    
 
     this.gui.addCamera('Camera', this.camera);
   }
@@ -72,7 +70,7 @@ class App {
     this.scene.add(this.light);
     this.gui.addLight('PointLight', this.light);
 
-    this.ambient = new THREE.AmbientLight(0xFFFFFF, 0.3);
+    this.ambient = new THREE.AmbientLight(0xffffff, 0.3);
 
     this.scene.add(this.ambient);
     this.gui.addLight('AmbientLight', this.ambient);
@@ -83,7 +81,7 @@ class App {
     const cubeMaterial = new THREE.MeshStandardMaterial({
       transparent: true,
       metalness: 0.8,
-      roughness: 0.5
+      roughness: 0.5,
     });
     this.cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
     this.cubeMesh.rotation.x = -1;
@@ -96,16 +94,16 @@ class App {
   initFloor() {
     const floorGeometry = new THREE.PlaneGeometry(500, 500);
     const floorMaterial = new THREE.MeshPhongMaterial({
-      color: 0xFFFFFF,
+      color: 0xffffff,
       metalness: 0,
     });
     const floorMesh = new THREE.Mesh(floorGeometry, floorMaterial);
     floorMesh.position.y = -3;
-    floorMesh.rotation.x = - Math.PI / 2
-    floorMesh.name = "Name"
+    floorMesh.rotation.x = -Math.PI / 2;
+    floorMesh.name = 'Name';
 
     this.scene.add(floorMesh);
-    this.gui.addMesh('Floor', floorMesh)
+    this.gui.addMesh('Floor', floorMesh);
   }
 }
 

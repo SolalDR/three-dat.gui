@@ -1,4 +1,7 @@
-import { manageColor } from '../helpers/manageDefines';
+import { Camera, PerspectiveCamera, OrthographicCamera } from 'three';
+import dat from 'dat.gui';
+
+import { manageColor } from '@/helpers/manageDefines';
 
 const defines = [
   ['bottom', 0],
@@ -11,27 +14,30 @@ const defines = [
   ['near', 0],
   ['right', 0],
   ['top', 0],
-  ['zoom', 0]
+  ['zoom', 0],
 ];
+
+type CameraWithProjectionMatrix = PerspectiveCamera | OrthographicCamera;
+type Cameras = Camera | CameraWithProjectionMatrix;
 
 /**
  * Add a gui controller to a camera.
- * @param {string} name
- * @param {THREE.Camera} camera
- * @returns {GUI} Returns the folder created for the camera
  */
-export const addCamera = function(name, camera) {
+export const addCamera = function (name: string, camera: Cameras): dat.GUI {
   const folder = this.addFolder(name);
   folder.addObject3D('object', camera, { inner: true });
 
-  defines.forEach(parameter => {
+  defines.forEach((parameter) => {
     if (!camera.hasOwnProperty(parameter[0])) return;
+
     if (parameter[1] === 'color') manageColor(camera, folder, parameter);
     else
       folder
         .add(camera, parameter[0], parameter[1], parameter[2])
         .onChange(() => {
-          if (camera.updateProjectionMatrix) camera.updateProjectionMatrix();
+          if (camera.hasOwnProperty('updateProjectionMatrix')) {
+            (camera as CameraWithProjectionMatrix).updateProjectionMatrix();
+          }
         });
   });
 

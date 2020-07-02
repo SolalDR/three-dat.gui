@@ -1,20 +1,24 @@
 {
   "name": "three-dat.gui",
-  "version": "2.0.6",
+  "version": "3.0.0-alpha",
   "description": "A package which create THREE.js controls on Dat.GUI",
   "main": "dist/index.js",
   "browser": "dist/browser.js",
   "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "npm run docs && rollup -c",
+    "build": "rollup -c",
     "dev": "run-p dev:**",
     "dev:compile": "rollup -cw",
     "dev:serve": "parcel dev/index.html -d .parcel",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "parcel build dev/index.html -d ./docs --public-url https://solaldr.github.io/three-dat.gui/"
+    "docs": "run-s docs:**",
+    "docs:clear": "rimraf docs",
+    "docs:compile": "yarn build",
+    "docs:build": "parcel build dev/index.html -d ./docs --public-url https://solaldr.github.io/three-dat.gui/"
   },
   "repository": {
     "type": "git",
@@ -25,29 +29,34 @@
     "dat.gui"
   ],
   "contributors": [
-    "Solal Dussout-Revel <bastienrobert@outlook.com> (https://bastienrobert.fr)",
-    "Bastien Robert <solal.dussout-revel@hotmail.fr> (https://solaldussout-revel.com/)"
+    "Bastien Robert <bastienrobert@outlook.com> (https://bastienrobert.fr)",
+    "Solal Dussout-Revel <solal.dussout-revel@hotmail.fr> (https://solaldussout-revel.com/)"
   ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SolalDR/three-dat.gui/issues"
   },
   "homepage": "https://github.com/SolalDR/three-dat.gui#readme",
+  "peerDependencies": {
+    "dat.gui": "^0.7.7",
+    "three": "^0.118.3"
+  },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.7.0",
-    "@babel/preset-env": "^7.7.1",
-    "babelify": "^8.0.0",
-    "browserify": "^16.1.0",
-    "dat.gui": "^0.7.3",
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "@types/dat.gui": "^0.7.5",
+    "dat.gui": "^0.7.7",
     "glslify": "^6.1.0",
     "npm-run-all": "^4.1.5",
     "parcel": "^1.12.4",
-    "rollup": "^1.27.0",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-filesize": "^6.2.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.18.2",
+    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-peer-deps-external": "^2.2.3",
     "rollup-plugin-terser": "^5.2.0",
-    "three": "^0.110.0"
+    "rollup-plugin-ts": "^1.2.19",
+    "three": "^0.118.3",
+    "typescript": "^3.9.6"
   }
 }
