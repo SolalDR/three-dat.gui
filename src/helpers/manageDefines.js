@@ -1,4 +1,4 @@
-const TYPES = ["Light", "Mesh", "Object3D"]
+const types = ['Light', 'Mesh', 'Object3D'];
 
 export const manageColor = (object, folder, parameter, onChange) => {
   const config = {};
@@ -6,10 +6,10 @@ export const manageColor = (object, folder, parameter, onChange) => {
   config[parameter[0]] = {
     r: object[parameter[0]].r * 255,
     g: object[parameter[0]].g * 255,
-    b: object[parameter[0]].b * 255
+    b: object[parameter[0]].b * 255,
   };
 
-  folder.addColor(config, parameter[0], parameter[1]).onChange(e => {
+  folder.addColor(config, parameter[0], parameter[1]).onChange((e) => {
     object[parameter[0]].r = e.r / 255;
     object[parameter[0]].g = e.g / 255;
     object[parameter[0]].b = e.b / 255;
@@ -29,13 +29,15 @@ export const manageRecursive = (
 
     object.children.forEach((child, index) => {
       for (var i = 0; i < types.length; i++) {
-        const type = TYPES[i];
+        const type = types[i];
         if (child[`is${type}`]) {
-          const name = child.name ? child.name + '-' + index : child.type + '-' + index;
+          const name = child.name
+            ? child.name + '-' + index
+            : child.type + '-' + index;
           const options = { recursive: true };
           childrenFolder[`add${type}`](name, child, options);
           break;
-        } 
+        }
       }
     });
   }
